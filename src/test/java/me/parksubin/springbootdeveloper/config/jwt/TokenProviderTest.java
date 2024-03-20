@@ -1,8 +1,6 @@
-package me.parksubin.springbootdeveloper.controller.config.jwt;
+package me.parksubin.springbootdeveloper.config.jwt;
 
 import io.jsonwebtoken.Jwts;
-import me.parksubin.springbootdeveloper.config.jwt.JwtProperties;
-import me.parksubin.springbootdeveloper.config.jwt.TokenProvider;
 import me.parksubin.springbootdeveloper.domain.User;
 import me.parksubin.springbootdeveloper.repository.UserRepository;
 import org.junit.jupiter.api.DisplayName;

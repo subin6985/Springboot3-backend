@@ -1,11 +1,10 @@
-package me.parksubin.springbootdeveloper.controller.config.jwt;
+package me.parksubin.springbootdeveloper.config.jwt;
 
 import io.jsonwebtoken.Header;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import lombok.Builder;
 import lombok.Getter;
-import me.parksubin.springbootdeveloper.config.jwt.JwtProperties;
 
 import java.time.Duration;
 import java.util.Date;
