@@ -62,7 +62,7 @@ function getCookie(key) {
     var result = null;
     var cookie = document.cookie.split(";");
     cookie.some(function (item) {
-        item = itemm.replace(" ", "");
+        item = item.replace(" ", "");
 
         var dic = item.split("=");
 
