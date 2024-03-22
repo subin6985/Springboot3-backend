@@ -1,47 +1,52 @@
-const deleteButton = document.getElementById('delete-btn');
+const deleteButton = document.getElementById("delete-btn");
 
 if(deleteButton) {
-    deleteButton.addEventListener('click', event => {
-        let id = document.getElementById('article-id').value;
-        fetch(`/api/articles/${id}`, {
-            method: 'DELETE'
-        })
-            .then(() => {
-                alert('삭제가 완료되었습니다.');
-                location.replace('/articles');
-            })
-    })
+    deleteButton.addEventListener("click", (event) => {
+        let id = document.getElementById("article-id").value;
+        function success() {
+            alert("삭제가 완료되었습니다.");
+            location.replace("/articles");
+        }
+
+        function fail() {
+            alert("삭제 실패했습니다.");
+        }
+
+        httpRequest("DELETE", "/api/articles/" + id, null, success, fail);
+    });
 }
 
-const modifyButton = document.getElementById('modify-btn');
+const modifyButton = document.getElementById("modify-btn");
 
 if(modifyButton) {
-    modifyButton.addEventListener('click', event => {
+    modifyButton.addEventListener("click", (event) => {
         let params = new URLSearchParams(location.search);
-        let id = params.get('id');
+        let id = params.get("id");
 
-        fetch(`/api/articles/${id}`, {
-            method: 'PUT',
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-                title: document.getElementById('title').value,
-                content: document.getElementById('content').value
-            })
-        })
-            .then(() => {
-                alert('수정이 완료되었습니다.');
-                location.replace(`/articles/${id}`);
-            })
-    })
+        body = JSON.stringify({
+            title: document.getElementById("title").value,
+            content: document.getElementById("content").value,
+        });
+
+        function success() {
+            alert("수정 완료되었습니다.");
+            location.replace("/articles/" + id);
+        }
+
+        function fail() {
+            alert("수정 실패했습니다.");
+            location.replace("/articles/" + id);
+        }
+
+        httpRequest("PUT", "/api/articles/" + id, body, success, fail);
+    });
 }
 
 const createButton = document.getElementById("create-btn");
 
 if(createButton) {
     createButton.addEventListener('click', (event) => {
-        body: JSON.stringify({
+        body = JSON.stringify({
             title: document.getElementById("title").value,
             content: document.getElementById("content").value,
         });
@@ -112,49 +117,5 @@ function httpRequest(method, url, body, success, fail) {
         } else {
             return fail();
         }
-    });
-}
-
-const deleteButton = document.getElementById("delete-btn");
-
-if(deleteButton) {
-    deleteButton.addEventListener("click", (event) => {
-        let id = document.getElementById("article-id").value;
-        function success() {
-            alert("삭제가 완료되었습니다.");
-            location.replace("/articles");
-        }
-
-        function fail() {
-            alert("삭제 실패했습니다.");
-        }
-
-        httpRequest("DELETE", "/api/articles/" + id, null, success, fail);
-    });
-}
-
-const modifyButton = document.getElementById("modify-btn");
-
-if(modifyButton) {
-    modifyButton.addEventListener("click", (event) => {
-        let params = new URLSearchParams(location.search);
-        let id = params.get("id");
-
-        body = JSON.stringify({
-            title: document.getElementById("title").value,
-            content: document.getElementById("content").value,
-        });
-
-        function success() {
-            alert("수정 완료되었습니다.");
-            location.replace("/articles/" + id);
-        }
-
-        function fail() {
-            alert("수정 실패했습니다.");
-            location.replace("/articles/" + id);
-        }
-
-        httpRequest("PUT", "/api/articles/" + id, body, success, fail);
     });
 }
