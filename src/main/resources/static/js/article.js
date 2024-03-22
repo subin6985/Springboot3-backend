@@ -46,7 +46,7 @@ const createButton = document.getElementById("create-btn");
 
 if(createButton) {
     createButton.addEventListener('click', (event) => {
-        body: JSON.stringify({
+        body = JSON.stringify({
             title: document.getElementById("title").value,
             content: document.getElementById("content").value,
         });
